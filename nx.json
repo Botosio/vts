@@ -1,0 +1,21 @@
+{
+  "npmScope": "vts",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "vts": {
+      "tags": []
+    },
+    "vts-e2e": {
+      "tags": []
+    }
+  }
+}
