@@ -123,6 +123,38 @@
           }
         }
       }
+    },
+    "camera": {
+      "projectType": "library",
+      "root": "libs/camera",
+      "sourceRoot": "libs/camera/src",
+      "prefix": "vts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/camera/tsconfig.lib.json",
+              "libs/camera/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/camera/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/camera/jest.config.js",
+            "tsConfig": "libs/camera/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/camera/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "defaultProject": "vts"

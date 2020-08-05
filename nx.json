@@ -16,6 +16,9 @@
     },
     "vts-e2e": {
       "tags": []
+    },
+    "camera": {
+      "tags": ["component"]
     }
   }
 }
