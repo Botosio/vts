@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "root": "apps/vts",
@@ -23,13 +23,8 @@
             "polyfills": "apps/vts/src/polyfills.ts",
             "tsConfig": "apps/vts/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/vts/src/favicon.ico",
-              "apps/vts/src/assets"
-            ],
-            "styles": [
-              "apps/vts/src/styles.sass"
-            ],
+            "assets": ["apps/vts/src/favicon.ico", "apps/vts/src/assets"],
+            "styles": ["apps/vts/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -87,13 +82,8 @@
             "polyfills": "apps/vts/src/polyfills.ts",
             "tsConfig": "apps/vts/tsconfig.spec.json",
             "karmaConfig": "apps/vts/karma.conf.js",
-            "assets": [
-              "apps/vts/src/favicon.ico",
-              "apps/vts/src/assets"
-            ],
-            "styles": [
-              "apps/vts/src/styles.sass"
-            ],
+            "assets": ["apps/vts/src/favicon.ico", "apps/vts/src/assets"],
+            "styles": ["apps/vts/src/styles.scss"],
             "scripts": []
           }
         },
@@ -104,9 +94,7 @@
               "apps/vts/tsconfig.app.json",
               "apps/vts/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -131,12 +119,11 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/vts-e2e/tsconfig.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "vts"
 }
