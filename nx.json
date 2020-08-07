@@ -19,6 +19,9 @@
     },
     "camera": {
       "tags": ["component"]
+    },
+    "dashboard": {
+      "tags": ["component"]
     }
   }
 }

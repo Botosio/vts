@@ -36,10 +36,15 @@ p {
   background-color: #1976d2;
   color: white;
   font-weight: 600;
+  a {
+    cursor: pointer;
+    color: #fff;
+  }
 }
 
 .toolbar img {
   margin: 0 16px;
+  cursor: pointer;
 }
 
 .toolbar #twitter-logo {
@@ -105,7 +110,8 @@ svg.material-icons:not(:last-child) {
   width: 168px;
 }
 
-.card-container .card:not(.highlight-card) {
+.card-container,
+.card {
   cursor: pointer;
 }
 
@@ -286,19 +292,12 @@ svg#clouds {
     visibility: hidden;
   }
 }
-.container {
-  margin: 0 1rem;
-}
 
-.mat-card {
-  max-width: 300px;
-  .card-header-image {
-    background: #1976d2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    i {
-      font-size: 1.5rem;
-    }
+// Personal Links
+.dave-links {
+  margin-right: 1rem;
+  a {
+    color: #fff;
+    margin-left: 1rem;
   }
 }
