@@ -24,7 +24,10 @@
             "tsConfig": "apps/vts/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/vts/src/favicon.ico", "apps/vts/src/assets"],
-            "styles": ["apps/vts/src/styles.scss"],
+            "styles": [
+              "apps/vts/src/styles.scss",
+              "apps/vts/src/style-custom-mat-theme.scss"
+            ],
             "scripts": []
           },
           "configurations": {

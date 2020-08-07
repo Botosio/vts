@@ -286,3 +286,19 @@ svg#clouds {
     visibility: hidden;
   }
 }
+.container {
+  margin: 0 1rem;
+}
+
+.mat-card {
+  max-width: 300px;
+  .card-header-image {
+    background: #1976d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
