@@ -28,7 +28,13 @@
               "apps/vts/src/styles.scss",
               "apps/vts/src/style-custom-mat-theme.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@firebase/app",
+              "@firebase/firestore",
+              "@firebase/component",
+              "@firebase/util"
+            ]
           },
           "configurations": {
             "production": {
