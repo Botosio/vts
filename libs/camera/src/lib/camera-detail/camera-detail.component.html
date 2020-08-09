@@ -1,1 +1,24 @@
-<p>camera-detail works!</p>
+<section class="form-container">
+  <h2>
+    <span>Camera Form Detail</span>
+    <a mat-button routerLink="../">
+      Back To List
+    </a>
+  </h2>
+  <form [formGroup]="form" class="card" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Device Number</mat-label>
+        <input matInput placeholder="1000AC3000" />
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button mat-stroked-button color="warn" *ngIf="form.controls.Id.value">
+        Delete
+      </button>
+      <button mat-stroked-button color="primary" type="submit">
+        Save
+      </button>
+    </div>
+  </form>
+</section>

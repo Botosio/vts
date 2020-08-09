@@ -1,1 +1,39 @@
-<p>camera-list works!</p>
+<!-- <ul>
+  <li class="list" *ngFor="let item of cameras | async">
+    {{ item | json }}
+  </li>
+</ul>
+ -->
+<section class="list-container">
+  <h2>
+    <span>Camera List</span>
+    <a mat-button routerLink="./new">
+      Add New Camera
+    </a>
+  </h2>
+  <section *ngIf="(cameras | async)?.length > 0">
+    <mat-table [dataSource]="cameras | async" class="mat-elevation-z8">
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Id }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="DeviceNo">
+        <mat-header-cell *matHeaderCellDef> DeviceNo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.DeviceNo }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.Status }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        class="clickable"
+        *matRowDef="let row; columns: displayedColumns"
+        routerLink="./{{ row.Id }}"
+      ></mat-row>
+    </mat-table>
+  </section>
+</section>
