@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CameraService } from './camera.service';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export const cameraRoutes: Route[] = [
   {
@@ -32,6 +33,7 @@ export const cameraRoutes: Route[] = [
     ReactiveFormsModule,
     MatButtonModule,
     MatTableModule,
+    MatSnackBarModule,
   ],
   declarations: [CameraListComponent, CameraDetailComponent],
   exports: [CameraListComponent, CameraDetailComponent],

@@ -9,8 +9,9 @@ import { CameraDetailModel } from '../camera.model';
 import { IFormGroup } from '@rxweb/types';
 import { CameraService } from '../camera.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap, filter } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'vts-camera-detail',
@@ -25,7 +26,9 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private _cameraDetailService: CameraService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +42,13 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
 
   private listenForRouteId() {
     this.subSubscription.add(
-      this.route.params.pipe(map((p) => (this.formId = p.id))).subscribe()
+      this.route.params
+        .pipe(
+          map((p) => (this.formId = p.id)),
+          filter((id) => id),
+          tap(() => this.getForm())
+        )
+        .subscribe()
     );
   }
 
@@ -49,7 +58,16 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
    */
   private createForm(): void {
     this.form = this._cameraDetailService.createForm();
-    console.log('count:');
+  }
+
+  private getForm(): void {
+    console.log('getting form');
+    this.subSubscription.add(
+      this._cameraDetailService
+        .GetCamera(this.formId)
+        .pipe(map((item) => this.form.patchValue(item)))
+        .subscribe()
+    );
   }
 
   /**
@@ -58,9 +76,20 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
    */
   private addCamera(): void {
     this._cameraDetailService
-      .AddCamera(this.form.getRawValue() as CameraDetailModel)
+      .SaveCamera(this.form.getRawValue() as CameraDetailModel)
+      .then((item) => {
+        if (this.form.controls.Id.value) {
+          this.form.patchValue(item);
+        } else {
+          this.router.navigate(['../', item.Id], {
+            relativeTo: this.route,
+          });
+        }
+      })
       .finally(() => {
-        console.log('saved'); // TODO pop toast message
+        this.snackBar.open('Form Saved', null, {
+          duration: 2000,
+        });
       });
   }
 

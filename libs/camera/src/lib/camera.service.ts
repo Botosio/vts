@@ -20,9 +20,9 @@ export class CameraService {
 
   public createForm() {
     return this.formBuilder.group<CameraDetailModel>({
-      Id: [null],
+      Id: [{ value: null, disabled: true }],
       DeviceNo: [null, Validators.required],
-      Status: [Status.Open],
+      Status: [{ value: Status.Open, disabled: true }],
     });
   }
 
@@ -32,7 +32,35 @@ export class CameraService {
       .valueChanges());
   }
 
-  public AddCamera(form: CameraDetailModel): Promise<any> {
-    return this.firestore.collection<CameraDetailModel>('Camera_DB').add(form);
+  public GetCamera(id: string): Observable<CameraDetailModel> {
+    return this.firestore
+      .doc<CameraDetailModel>('Camera_DB/' + id)
+      .get()
+      .pipe(map((fireStore) => fireStore.data() as CameraDetailModel));
+  }
+
+  public SaveCamera(form: CameraDetailModel): Promise<any> {
+    if (!form.Id) form.Id = this.uuidv4();
+    return this.firestore
+      .collection<CameraDetailModel>('Camera_DB')
+      .doc(form.Id)
+      .set(form)
+      .then(() => {
+        return form;
+      });
+  }
+
+  /**
+   * Creates a Javascript GUID, you shouldn't do this.
+   * This is only for a demo
+   */
+  private uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (
+      c
+    ) {
+      var r = (Math.random() * 16) | 0,
+        v = c == 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
   }
 }
