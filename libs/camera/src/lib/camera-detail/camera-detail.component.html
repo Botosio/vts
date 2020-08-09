@@ -5,7 +5,7 @@
       Back To List
     </a>
   </h2>
-  <form [formGroup]="form" class="card" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" class="card" (ngSubmit)="saveCamera()">
     <div class="row">
       <mat-form-field>
         <mat-label>Device Number</mat-label>
@@ -23,11 +23,33 @@
       </mat-form-field>
     </div>
     <div class="form-actions">
-      <button mat-stroked-button color="warn" *ngIf="form.controls.Id.value">
+      <button
+        mat-stroked-button
+        color="warn"
+        *ngIf="
+          form.controls.Id.value &&
+          form.controls.Status.value !== statusEnum.Deleted
+        "
+        [disabled]="form.controls.Status.value === statusEnum.Assigned"
+        (click)="deleteCamera()"
+      >
         Delete
       </button>
-      <button mat-stroked-button color="primary" type="submit">
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        *ngIf="form.controls.Status.value !== statusEnum.Deleted"
+      >
         Save
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        *ngIf="form.controls.Status.value === statusEnum.Deleted"
+        (click)="reopenCamera()"
+      >
+        Reopen
       </button>
     </div>
   </form>

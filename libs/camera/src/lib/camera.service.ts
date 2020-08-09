@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { CameraDetailModel, Status } from './camera.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CameraService {

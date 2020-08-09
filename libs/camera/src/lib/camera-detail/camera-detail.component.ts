@@ -4,8 +4,7 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
 } from '@angular/core';
-
-import { CameraDetailModel } from '../camera.model';
+import { CameraDetailModel, Status } from '../camera.model';
 import { IFormGroup } from '@rxweb/types';
 import { CameraService } from '../camera.service';
 import { Subscription } from 'rxjs';
@@ -21,6 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CameraDetailComponent implements OnInit, OnDestroy {
   public form: IFormGroup<CameraDetailModel>;
+  public statusEnum = Status;
   private formId: string;
   private subSubscription = new Subscription();
 
@@ -61,7 +61,6 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
   }
 
   private getForm(): void {
-    console.log('getting form');
     this.subSubscription.add(
       this._cameraDetailService
         .GetCamera(this.formId)
@@ -72,9 +71,10 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
 
   /**
    * Add a new Camera with the CameraDetailModel
+   * Or if ID is present, will update
    * @returns void
    */
-  private addCamera(): void {
+  public saveCamera(): void {
     this._cameraDetailService
       .SaveCamera(this.form.getRawValue() as CameraDetailModel)
       .then((item) => {
@@ -93,7 +93,12 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  public onSubmit() {
-    this.addCamera();
+  public deleteCamera(): void {
+    this.form.controls.Status.setValue(this.statusEnum.Deleted);
+    this.saveCamera();
+  }
+  public reopenCamera(): void {
+    this.form.controls.Status.setValue(this.statusEnum.Open);
+    this.saveCamera();
   }
 }
