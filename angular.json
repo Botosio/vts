@@ -202,6 +202,38 @@
           "style": "scss"
         }
       }
+    },
+    "vehicle": {
+      "projectType": "library",
+      "root": "libs/vehicle",
+      "sourceRoot": "libs/vehicle/src",
+      "prefix": "vts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/vehicle/tsconfig.lib.json",
+              "libs/vehicle/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/vehicle/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/vehicle/jest.config.js",
+            "tsConfig": "libs/vehicle/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/vehicle/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "defaultProject": "vts"

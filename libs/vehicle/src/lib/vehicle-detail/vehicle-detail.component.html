@@ -1,0 +1,56 @@
+<section class="form-container">
+  <h2>
+    <span>Vehicle Form Detail</span>
+    <a mat-button routerLink="../">
+      Back To List
+    </a>
+  </h2>
+  <form [formGroup]="form" class="card" (ngSubmit)="saveVehicle()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Truck 001" formControlName="Name" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="Status" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="Id" />
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button
+        mat-stroked-button
+        color="warn"
+        *ngIf="
+          form.controls.Id.value &&
+          form.controls.Status.value !== statusEnum.Deleted
+        "
+        [disabled]="form.controls.Status.value === statusEnum.Assigned"
+        (click)="deleteVehicle()"
+      >
+        Delete
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        *ngIf="form.controls.Status.value !== statusEnum.Deleted"
+      >
+        Save
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        *ngIf="form.controls.Status.value === statusEnum.Deleted"
+        (click)="reopenVehicle()"
+      >
+        Reopen
+      </button>
+    </div>
+  </form>
+</section>

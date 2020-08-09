@@ -1,46 +1,46 @@
 import { Injectable } from '@angular/core';
 import { IFormGroup, IFormBuilder } from '@rxweb/types';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CameraDetailModel, Status } from './camera.model';
+import { VehicleDetailModel, Status } from './vehicle.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class CameraService {
-  public form: IFormGroup<CameraDetailModel>;
+export class VehicleService {
+  public form: IFormGroup<VehicleDetailModel>;
   public formBuilder: IFormBuilder;
-  public storeCameras$: Observable<CameraDetailModel[]>;
+  public storeVehicles$: Observable<VehicleDetailModel[]>;
 
   constructor(formBuilder: FormBuilder, private firestore: AngularFirestore) {
     this.formBuilder = formBuilder;
   }
 
   public createForm() {
-    return this.formBuilder.group<CameraDetailModel>({
+    return this.formBuilder.group<VehicleDetailModel>({
       Id: [{ value: null, disabled: true }],
-      DeviceNo: [null, Validators.required],
+      Name: [null, Validators.required],
       Status: [{ value: Status.Open, disabled: true }],
     });
   }
 
-  public GetAllCameras(): Observable<CameraDetailModel[]> {
-    return (this.storeCameras$ = this.firestore
-      .collection<CameraDetailModel>('Camera_DB')
+  public GetAllVehicles(): Observable<VehicleDetailModel[]> {
+    return (this.storeVehicles$ = this.firestore
+      .collection<VehicleDetailModel>('Vehicle_DB')
       .valueChanges());
   }
 
-  public GetCamera(id: string): Observable<CameraDetailModel> {
+  public GetVehicle(id: string): Observable<VehicleDetailModel> {
     return this.firestore
-      .doc<CameraDetailModel>('Camera_DB/' + id)
+      .doc<VehicleDetailModel>('Vehicle_DB/' + id)
       .get()
-      .pipe(map((fireStore) => fireStore.data() as CameraDetailModel));
+      .pipe(map((fireStore) => fireStore.data() as VehicleDetailModel));
   }
 
-  public SaveCamera(form: CameraDetailModel): Promise<any> {
+  public SaveVehicle(form: VehicleDetailModel): Promise<any> {
     if (!form.Id) form.Id = this.uuidv4();
     return this.firestore
-      .collection<CameraDetailModel>('Camera_DB')
+      .collection<VehicleDetailModel>('Vehicle_DB')
       .doc(form.Id)
       .set(form)
       .then(() => {

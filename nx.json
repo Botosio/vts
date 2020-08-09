@@ -22,6 +22,9 @@
     },
     "dashboard": {
       "tags": ["component"]
+    },
+    "vehicle": {
+      "tags": ["Component"]
     }
   }
 }

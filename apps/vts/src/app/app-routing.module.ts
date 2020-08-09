@@ -12,6 +12,11 @@ const routes: Routes = [
     // canActivate: [CanActivateRouteGuard],
     loadChildren: () => import('@vts/camera-lib').then((m) => m.CameraModule),
   },
+  {
+    path: 'vehicle',
+    // canActivate: [CanActivateRouteGuard],
+    loadChildren: () => import('@vts/vehicle-lib').then((m) => m.VehicleModule),
+  },
 ];
 
 @NgModule({
