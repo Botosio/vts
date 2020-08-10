@@ -1,9 +1,14 @@
 <section class="list-container">
   <h2>
     <span>Assignment List</span>
-    <a mat-button routerLink="./new">
-      Add New Assignment
-    </a>
+    <div>
+      <a mat-button routerLink="../">
+        <i class="fas fa-chevron-circle-left"></i> Back To Dashboard
+      </a>
+      <a mat-button routerLink="./new">
+        <i class="fas fa-plus-circle"></i> Add New Assignment
+      </a>
+    </div>
   </h2>
   <section *ngIf="(assignments | async)?.length > 0">
     <mat-table [dataSource]="assignments | async" class="mat-elevation-z8">
