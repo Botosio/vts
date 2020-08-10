@@ -17,6 +17,12 @@ const routes: Routes = [
     // canActivate: [CanActivateRouteGuard],
     loadChildren: () => import('@vts/vehicle-lib').then((m) => m.VehicleModule),
   },
+  {
+    path: 'assignment',
+    // canActivate: [CanActivateRouteGuard],
+    loadChildren: () =>
+      import('@vts/assignment-lib').then((m) => m.AssignmentModule),
+  },
 ];
 
 @NgModule({

@@ -15,21 +15,31 @@ export class VehicleService {
   constructor(formBuilder: FormBuilder, private firestore: AngularFirestore) {
     this.formBuilder = formBuilder;
   }
-
-  public createForm() {
+  /**
+   * return a angular formGroup that is strongly typed to VehicleDetailModel
+   * @returns IFormGroup<VehicleDetailModel>
+   */
+  public createForm(): IFormGroup<VehicleDetailModel> {
     return this.formBuilder.group<VehicleDetailModel>({
       Id: [{ value: null, disabled: true }],
       Name: [null, Validators.required],
       Status: [{ value: Status.Open, disabled: true }],
     });
   }
-
+  /**
+   * Gets all Vehicles from DB and watches for change
+   * @returns Observable
+   */
   public GetAllVehicles(): Observable<VehicleDetailModel[]> {
     return (this.storeVehicles$ = this.firestore
       .collection<VehicleDetailModel>('Vehicle_DB')
       .valueChanges());
   }
-
+  /**
+   * Gets a Vehicle by Id
+   * @param  {string} id
+   * @returns Observable
+   */
   public GetVehicle(id: string): Observable<VehicleDetailModel> {
     return this.firestore
       .doc<VehicleDetailModel>('Vehicle_DB/' + id)
@@ -37,6 +47,11 @@ export class VehicleService {
       .pipe(map((fireStore) => fireStore.data() as VehicleDetailModel));
   }
 
+  /**
+   * Save a Vehicle object to the DB and returns the form with a new Id if null
+   * @param  {VehicleDetailModel} form
+   * @returns Promise
+   */
   public SaveVehicle(form: VehicleDetailModel): Promise<any> {
     if (!form.Id) form.Id = this.uuidv4();
     return this.firestore

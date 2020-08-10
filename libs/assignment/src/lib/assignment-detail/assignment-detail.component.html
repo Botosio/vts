@@ -1,0 +1,110 @@
+<section class="form-container">
+  <h2>
+    <span>Assignment Form Detail</span>
+    <a mat-button routerLink="../">
+      Back To List
+    </a>
+  </h2>
+  <form [formGroup]="form" class="card" (ngSubmit)="saveAssignment()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Assignment 001" formControlName="Name" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="text"
+          placeholder="Vehicle"
+          matInput
+          formControlName="VehicleAutoComplete"
+          [matAutocomplete]="vehicleAC"
+          (blur)="onVehicleBlur()"
+        />
+        <mat-autocomplete
+          #vehicleAC="matAutocomplete"
+          [displayWith]="vehicleDisplayFn"
+          (optionSelected)="onVehicleSelect($event)"
+        >
+          <mat-option
+            *ngFor="let option of filteredVehicleOptions | async"
+            [value]="option"
+          >
+            {{ option.Name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="text"
+          placeholder="Camera"
+          matInput
+          formControlName="CameraAutoComplete"
+          [matAutocomplete]="cameraAC"
+          (blur)="onCameraBlur()"
+        />
+        <mat-autocomplete
+          #cameraAC="matAutocomplete"
+          [displayWith]="cameraDisplayFn"
+          (optionSelected)="onCameraSelect($event)"
+        >
+          <mat-option
+            *ngFor="let option of filteredCameraOptions | async"
+            [value]="option"
+          >
+            {{ option.DeviceNo }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="Status" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="Id" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Date Created</mat-label>
+        <input matInput formControlName="DateCreated" />
+      </mat-form-field>
+    </div>
+    <div class="form-actions">
+      <button
+        type="button"
+        mat-stroked-button
+        color="warn"
+        *ngIf="
+          form.controls.Id.value &&
+          form.controls.Status.value !== statusEnum.Deleted
+        "
+        [disabled]="form.controls.Status.value === statusEnum.Assigned"
+        (click)="deleteAssignment()"
+      >
+        Delete
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        *ngIf="form.controls.Status.value !== statusEnum.Deleted"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        mat-stroked-button
+        color="primary"
+        *ngIf="form.controls.Status.value === statusEnum.Deleted"
+        (click)="reopenAssignment()"
+      >
+        Reopen
+      </button>
+    </div>
+  </form>
+</section>

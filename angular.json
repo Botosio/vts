@@ -33,7 +33,8 @@
               "@firebase/app",
               "@firebase/firestore",
               "@firebase/component",
-              "@firebase/util"
+              "@firebase/util",
+              "firebase/app"
             ]
           },
           "configurations": {
@@ -232,6 +233,38 @@
             "tsConfig": "libs/vehicle/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/vehicle/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "assignment": {
+      "projectType": "library",
+      "root": "libs/assignment",
+      "sourceRoot": "libs/assignment/src",
+      "prefix": "vts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/assignment/tsconfig.lib.json",
+              "libs/assignment/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/assignment/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/assignment/jest.config.js",
+            "tsConfig": "libs/assignment/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/assignment/src/test-setup.ts"
           }
         }
       },

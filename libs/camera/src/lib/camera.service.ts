@@ -16,20 +16,31 @@ export class CameraService {
     this.formBuilder = formBuilder;
   }
 
-  public createForm() {
+  /**
+   * return a angular formGroup that is strongly typed to CameraDetailModel
+   * @returns IFormGroup<CameraDetailModel>
+   */
+  public createForm(): IFormGroup<CameraDetailModel> {
     return this.formBuilder.group<CameraDetailModel>({
       Id: [{ value: null, disabled: true }],
       DeviceNo: [null, Validators.required],
       Status: [{ value: Status.Open, disabled: true }],
     });
   }
-
+  /**
+   * gets all cameras from DB and watches for change
+   * @returns Observable
+   */
   public GetAllCameras(): Observable<CameraDetailModel[]> {
     return (this.storeCameras$ = this.firestore
       .collection<CameraDetailModel>('Camera_DB')
       .valueChanges());
   }
-
+  /**
+   * Gets a Camera by Id
+   * @param  {string} id
+   * @returns Observable
+   */
   public GetCamera(id: string): Observable<CameraDetailModel> {
     return this.firestore
       .doc<CameraDetailModel>('Camera_DB/' + id)
@@ -37,6 +48,11 @@ export class CameraService {
       .pipe(map((fireStore) => fireStore.data() as CameraDetailModel));
   }
 
+  /**
+   * Save a camera object to the DB and returns the form with a new Id if null
+   * @param  {CameraDetailModel} form
+   * @returns Promise
+   */
   public SaveCamera(form: CameraDetailModel): Promise<any> {
     if (!form.Id) form.Id = this.uuidv4();
     return this.firestore

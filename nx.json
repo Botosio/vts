@@ -25,6 +25,9 @@
     },
     "vehicle": {
       "tags": ["Component"]
+    },
+    "assignment": {
+      "tags": ["Component"]
     }
   }
 }

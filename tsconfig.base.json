@@ -15,7 +15,8 @@
     "paths": {
       "@vts/camera-lib": ["libs/camera/src/index.ts"],
       "@vts/dashboard-lib": ["libs/dashboard/src/index.ts"],
-      "@vts/vehicle-lib": ["libs/vehicle/src/index.ts"]
+      "@vts/vehicle-lib": ["libs/vehicle/src/index.ts"],
+      "@vts/assignment-lib": ["libs/assignment/src/index.ts"]
     },
     "rootDir": "."
   }
