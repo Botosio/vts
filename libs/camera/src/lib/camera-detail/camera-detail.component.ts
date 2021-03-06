@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap, filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { AuthenticationService } from '@vts/login';
 @Component({
   selector: 'vts-camera-detail',
   templateUrl: './camera-detail.component.html',
@@ -28,7 +28,8 @@ export class CameraDetailComponent implements OnInit, OnDestroy {
     private _cameraDetailService: CameraService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public _authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {

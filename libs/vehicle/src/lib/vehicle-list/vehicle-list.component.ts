@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { VehicleService } from '../vehicle.service';
 import { Observable } from 'rxjs';
 import { VehicleDetailModel } from '../vehicle.model';
+import { AuthenticationService } from '@vts/login';
 
 @Component({
   selector: 'vts-vehicle-list',
@@ -13,7 +14,7 @@ export class VehicleListComponent implements OnInit {
   public vehicles: Observable<VehicleDetailModel[]>;
   public displayedColumns: string[] = ['Id', 'Name', 'Status'];
 
-  constructor(private _vehicleDetailService: VehicleService) {}
+  constructor(private _vehicleDetailService: VehicleService, public _authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.getVehicleList();

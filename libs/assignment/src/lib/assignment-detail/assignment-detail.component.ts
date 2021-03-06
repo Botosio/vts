@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, filter, tap, throwIfEmpty } from 'rxjs/operators';
 import { VehicleDetailModel } from '@vts/vehicle-lib';
 import { CameraDetailModel } from '@vts/camera-lib';
+import { AuthenticationService } from '@vts/login';
 
 @Component({
   selector: 'vts-assignment-detail',
@@ -32,7 +33,8 @@ export class AssignmentDetailComponent implements OnInit {
     private _vehicleDetailService: AssignmentService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public _authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@
       <a mat-button routerLink="../">
         <i class="fas fa-chevron-circle-left"></i> Back To Dashboard
       </a>
-      <a mat-button routerLink="./new">
+      <a mat-button routerLink="./new" *ngIf="_authenticationService.loggedInUser$ | async">
         <i class="fas fa-plus-circle"></i> Add New Vehicle
       </a>
     </div>

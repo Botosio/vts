@@ -1,0 +1,21 @@
+<section class="panel">
+
+
+  <h1>Please Log In</h1>
+  <div class="form-container">
+    <form [formGroup]="form" class="plain-form" submit="signInEmail()" autocomplete="off">
+      <mat-form-field>
+        <input matInput type="email" formControlName="email" placeholder="email" required autocomplete="off" >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="password" required autocomplete="off">
+      </mat-form-field>
+    </form>
+    <div class="button-actions">
+      <button mat-raised-button color="primary" (click)="signInEmail()">Submit</button>
+     <!--  <button mat-raised-button color="primary" (click)="resetPassword()" [disabled]="!form.controls['email'].value">Reset Password</button> -->
+    </div>
+
+  </div>
+</section>

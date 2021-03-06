@@ -6,6 +6,7 @@ import { VehicleService } from '../vehicle.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, filter, tap } from 'rxjs/operators';
+import { AuthenticationService } from '@vts/login';
 
 @Component({
   selector: 'vts-vehicle-detail',
@@ -23,7 +24,8 @@ export class VehicleDetailComponent implements OnInit {
     private _vehicleDetailService: VehicleService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public _authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {

@@ -34,7 +34,7 @@
     "@angular/common": "~10.0.6",
     "@angular/compiler": "~10.0.6",
     "@angular/core": "~10.0.6",
-    "@angular/fire": "^6.0.2",
+    "@angular/fire": "6.1.4",
     "@angular/forms": "~10.0.6",
     "@angular/material": "^10.1.2",
     "@angular/platform-browser": "~10.0.6",
@@ -44,7 +44,7 @@
     "@nrwl/angular": "^10.0.7",
     "@nrwl/workspace": "^10.0.7",
     "@rxweb/types": "^1.0.5",
-    "firebase": "^7.17.2",
+    "firebase": "^8.1.2",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -1,3 +1,4 @@
+import { LoginModule } from '@vts/login';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +16,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    LoginModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

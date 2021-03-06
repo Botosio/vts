@@ -28,6 +28,9 @@
     },
     "assignment": {
       "tags": ["Component"]
+    },
+    "login": {
+      "tags": []
     }
   }
 }

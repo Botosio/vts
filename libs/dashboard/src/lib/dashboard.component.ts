@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
+import { AuthenticationService } from '@vts/login';
 @Component({
   selector: 'vts-dashboard',
   templateUrl: './dashboard.component.html',
@@ -8,7 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
